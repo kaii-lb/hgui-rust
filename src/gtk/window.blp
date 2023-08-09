@@ -1,0 +1,298 @@
+using Gtk 4.0;
+using Adw 1;
+
+template HguiRustWindow : Adw.ApplicationWindow {
+  default-width: 600;
+  default-height: 350;
+  handle-menubar-accel: true;
+  resizable: false;
+
+  [content]
+  Adw.ToastOverlay toast_overlay {
+    Stack main_stack {
+      transition-type: crossfade;
+
+      StackPage {
+        name: "main-view";
+        
+        child: Box {
+          orientation: vertical;
+
+          HeaderBar header_bar {
+            styles [ "flat" ]
+
+            [title]
+            Box {
+              Label {
+                label: "Hijri to Gregorian Converter";
+              }
+            }
+
+            [end]
+            MenuButton {
+              icon-name: "open-menu-symbolic";
+              menu-model: primary_menu;
+              tooltip-text: "Open Main Menu";            
+            }
+          }
+
+          Box main_box {
+            orientation: vertical;
+            valign: center;
+            vexpand: true;
+            spacing: 6;
+            width-request: 450;
+            margin-start: 32;
+            margin-end: 32;
+
+            Box {
+              spacing: 16;
+              hexpand: true;
+              halign: center;
+              margin-top: 20;
+
+              Entry hijri_entry {
+                placeholder-text: "ex: day/month/year";
+                width-request: 150;
+                height-request: 40;
+                margin-end: 24;
+                tooltip-text: "enter hijri date";
+                visible: false;
+                input-purpose: number;
+              }
+              
+              SpinButton hijri_spin_button {
+                text: "Hijri Entry";
+                numeric: true;
+                width-request: 150;
+                height-request: 40;
+                margin-end: 24;
+                tooltip-text: "enter hijri year";
+                adjustment: hijri_adjustment;
+                value: 0;
+              }
+
+              SpinButton start_year_spin_button {
+                text: "Start Year";
+                numeric: true;
+                width-request: 150;
+                height-request: 40;
+                margin-end: 24;
+                tooltip-text: "enter start year";
+                adjustment: start_year_adjustment;
+                value: 0;
+                visible: false;
+              }
+
+              Button change_between_button {
+                styles ["circular"]
+                icon-name: "media-playlist-shuffle-symbolic";
+                tooltip-text: "switch between hijri and gregorian";
+                //visible: false;
+              }
+
+              SpinButton gregorian_spin_button {
+                text: "Gregorian Entry";
+                numeric: true;
+                width-request: 150;
+                height-request: 40;
+                margin-start: 32;
+                tooltip-text: "enter gregorian year";
+                adjustment: gregorian_adjustment;
+                value: 622;
+              }
+
+              SpinButton end_year_spin_button {
+                text: "End Year";
+                numeric: true;
+                width-request: 150;
+                height-request: 40;
+                margin-start: 32;
+                tooltip-text: "enter end year";
+                adjustment: end_year_adjustment;
+                value: 622;
+                visible: false;
+              }
+
+              Entry gregorian_entry {
+                placeholder-text: "ex: day/month/year";
+                width-request: 150;
+                height-request: 40;
+                margin-start: 32;
+                tooltip-text: "enter hijri date";
+                visible: false;
+                input-purpose: number;
+              }
+            }
+
+            Box secondary_box {
+              spacing: 16;
+              halign: center;
+              hexpand: true;
+              margin-bottom: 32;
+              margin-top: 32;
+              homogeneous: true;
+
+              [start]
+              Button copy_button {
+                label: "Copy";
+                tooltip-text: "copy converted date to clipboard";
+              }
+
+              [center]
+              Button convert_button {
+                label: "Convert";
+                tooltip-text: "convert input date";
+              }
+
+              [end]
+              Button switch_mode_button {
+                label: "Normal";
+                tooltip-text: "switch mode of application";
+              }
+            }
+          }
+        };
+      }
+    }
+  }
+}
+
+menu primary_menu {
+  section {
+    item {
+      label: _("_Keyboard Shortcuts");
+      action: "win.show-help-overlay";
+    }
+
+    item {
+      label: _("_About Hgui-rust");
+      action: "app.about";
+    }
+  }
+}
+
+Dialog array_dialog {
+  width-request: 275;
+  height-request: 275;
+  modal: true;
+  hide-on-close: true;
+
+  Box {
+    orientation: vertical;
+    margin-start: 4;
+    margin-end: 4;
+    margin-top: 4;
+    margin-bottom: 4;
+    // hexpand: true;
+    // vexpand: true;
+
+    //  HeaderBar {
+    //    styles [ "flat" ]
+    //  
+    //    [title]
+    //    Box {
+    //      Label dialog_title {
+    //        label: "Hijri to Gregorian";
+    //      }
+    //    }
+    //  }
+
+    Box {
+      orientation: vertical;
+      hexpand: true;
+      vexpand: true;
+      
+      ScrolledWindow {
+        margin-start: 8;
+        margin-end: 8;
+        margin-top: 8;
+        margin-bottom: 8;
+        hexpand: true;
+        vexpand: true;
+
+        Viewport {
+          ListBox array_list_box {            
+            ListBoxRow {
+              margin-start: 4;
+              margin-end: 4;
+              margin-top: 4;
+              margin-bottom: 4;
+
+              Label {
+                label: "HALOO";
+              }
+            }
+            ListBoxRow {
+              margin-start: 4;
+              margin-end: 4;
+              margin-top: 4;
+              margin-bottom: 4;
+            
+              Label {
+                label: "HALOO";
+              }
+            }
+            ListBoxRow {
+              margin-start: 4;
+              margin-end: 4;
+              margin-top: 4;
+              margin-bottom: 4;
+            
+              Label {
+                label: "HALOO";
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+MessageDialog error_dialog {
+  text: "Something went wrong, please check your inputs.";
+  modal: true;
+  
+  [action response=ok]
+  Button ok_button {
+    label: "OK";
+  }
+}
+
+
+Adjustment hijri_adjustment {
+  upper: 9999;
+  lower: 0;
+  step-increment: 1;
+  page-increment: 10;
+  page-size: 10;
+  value: 0;
+}
+
+Adjustment gregorian_adjustment {
+  upper: 9999;
+  lower: 622;
+  step-increment: 1;
+  page-increment: 10;
+  page-size: 10;
+  value: 622;
+}
+
+Adjustment end_year_adjustment {
+  upper: 9999;
+  lower: 0;
+  step-increment: 1;
+  page-increment: 10;
+  page-size: 10;
+  value: 0;
+}
+
+Adjustment start_year_adjustment {
+  upper: 9999;
+  lower: 0;
+  step-increment: 1;
+  page-increment: 10;
+  page-size: 10;
+  value: 0;
+}
