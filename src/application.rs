@@ -98,7 +98,7 @@ impl HguiRustApplication {
         let window = self.active_window().unwrap();
         let about = adw::AboutWindow::builder()
             .transient_for(&window)
-            .application_name("Hijri to Gregorian Converter")
+            .application_name("Time Warp")
             .application_icon("com.kaii.hgui")
             .developer_name("Kaii")
             .version(VERSION)

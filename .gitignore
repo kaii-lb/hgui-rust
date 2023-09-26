@@ -1,3 +1,5 @@
 build-linux/
 target/
 build/
+.flatpak-builder/
+.gitignore
