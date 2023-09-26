@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Hijri To Gregorian Converter 
+Name=Time Warp
 Exec=hgui-rust
 Icon=com.kaii.hgui
 Terminal=false

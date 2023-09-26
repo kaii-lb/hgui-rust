@@ -102,7 +102,7 @@ impl HguiRustApplication {
             .application_icon("com.kaii.hgui")
             .developer_name("Kaii")
             .version(VERSION)
-            .developers(vec!["Kaii".into(), "Email: mouhanadmasre164@gmail.com<mouhanadmasre164@gmail.com>".into(), "Github: kaii-lb https://github.com/kaii-lb".into(), "Icons by Icons8 https://icons8.com/".into()])
+            .developers(vec!["Kaii".into(), "Email: imkaiilb@gmail.com<imkaiilb@gmail.com>".into(), "Github: kaii-lb https://github.com/kaii-lb".into(), "Icons by Icons8 https://icons8.com/".into()])
             .copyright("©  Copyright 2023 Kai
                         
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -117,3 +117,4 @@ SPDX-License-Identifier: GPL-3.0-or-later")
         about.present();
     }
 }
+
