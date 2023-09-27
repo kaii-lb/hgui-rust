@@ -4,3 +4,4 @@ build/
 subprojects/blueprint-compiler
 .flatpak-builder/
 .gitignore
+cargo-flatpak.py
