@@ -20,7 +20,8 @@
         ],
         "env" : {
             "RUST_BACKTRACE" : "1",
-            "RUST_LOG" : "hgui-rust=debug"
+            "RUST_LOG" : "hgui-rust=debug",
+            "CARGO_HOME" : "/run/build/hgui/cargo"
         }
     },
     "cleanup" : [
@@ -42,7 +43,9 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "file:///home/kaii/Projects"
+                    "url" : "file:///home/kaii/Projects",
+					"tag" : "v1.0.0",
+					"commit" : "2cf31d0fecd60fbe4d379afe57b1efea926c7093"
                 }
             ]
         }

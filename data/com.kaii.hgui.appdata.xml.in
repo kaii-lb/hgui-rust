@@ -9,8 +9,10 @@
   <project_license>GPL-3.0-or-later</project_license>
 
   <recommends>
-    <display_length compare="ge">768</display_length>
+    <display_length compare="ge">360</display_length>
   </recommends>
+
+  <url type="homepage">https://github.com/kaii-lb/hgui-rust</url>
 
   <description>
     <p>
@@ -21,16 +23,45 @@
       </p>
     </description>
 
+  <releases>
+    <release version="1.0.0" date="2023-09-26" type="stable">
+      <description>
+        <p>First Stable Release.</p>
+      </description>
+  
+      <url>https://github.com/kaii-lb/hgui-rust/releases/tag/v1.0.0</url>
+  
+      <issues>
+        <issue url="https://example.com/bugzilla/12345">bz#12345</issue>
+        <issue type="cve">CVE-2019-123456</issue>
+      </issues>
+  
+      <artifacts>
+        <artifact type="binary" platform="x86_64-linux-gnu">
+          <location>https://github.com/kaii-lb/hgui-rust/releases/tag/v1.0.0</location>
+          <checksum type="sha256">748e5548d318643caca599142a656e5c56fdaa679d1d72aac41b0657ede7ad40</checksum>
+          <size type="download">26471168</size>
+          <size type="installed">267600000</size>
+        </artifact>
+      </artifacts>
+    </release>
+  </releases>
+
+  <content_rating type="oars-1.1" />
+
     <launchable type="desktop-id">com.kaii.hgui.desktop</launchable>
     <screenshots>
       <screenshot type="default">
         <image>https://github.com/kaii-lb/hgui-rust/blob/master/assets/images/dates.png</image>
+		<caption>shows app converting between full dates (mm/dd/yyyy)</caption>
       </screenshot>
       <screenshot>
         <image>https://github.com/kaii-lb/hgui-rust/blob/master/assets/images/array.png</image>
+		<caption>shows app converting multiple years (from XXXX to YYYY)</caption>
       </screenshot>
       <screenshot>
         <image>https://github.com/kaii-lb/hgui-rust/blob/master/assets/images/years.png</image>
+		<caption>shows app converting between years (Hijri year to Gregorian year)</caption>
       </screenshot>
     </screenshots>
   </component>
