@@ -1,3 +1,0 @@
-indent_style = "Visual"
-imports_granularity = "Crate"
-max_width = 120
