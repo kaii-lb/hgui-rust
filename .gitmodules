@@ -1,4 +1,0 @@
-[submodule "blueprint-compiler"]
-	path = subprojects/blueprint-compiler
-	url = git://gitlab.gnome.org/jwestman/blueprint-compiler.git
-	

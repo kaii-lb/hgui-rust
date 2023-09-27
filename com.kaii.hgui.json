@@ -37,15 +37,28 @@
     ],
     "modules" : [
         {
+          "name": "blueprint-compiler",
+          "buildsystem": "meson",
+          "cleanup": ["*"],
+          "sources": [
+            {
+              "type": "git",
+              "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler.git",
+              "tag": "v0.10.0"
+            }
+          ]
+        },
+        {
             "name" : "hgui-rust",
             "builddir" : true,
             "buildsystem" : "meson",
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "file:///home/kaii/Projects",
-		    "tag" : "v1.0.2"
-                }
+                    "url" : "https://github.com/kaii-lb/hgui-rust.git",
+				    "tag" : "v1.0.2"
+                },
+                "generated-sources.json"
             ]
         }
     ]
