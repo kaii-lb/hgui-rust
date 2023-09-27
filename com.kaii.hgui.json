@@ -44,8 +44,7 @@
                 {
                     "type" : "git",
                     "url" : "file:///home/kaii/Projects",
-					"tag" : "v1.0.0",
-					"commit" : "2cf31d0fecd60fbe4d379afe57b1efea926c7093"
+		    "tag" : "v1.0.2"
                 }
             ]
         }
