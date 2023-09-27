@@ -54,7 +54,7 @@
             "buildsystem" : "meson",
             "sources" : [
                 {
-                    "type" : "git",
+                    "type" : "dir",
                     "path" : ".",
                 },
                 "generated-sources.json"
