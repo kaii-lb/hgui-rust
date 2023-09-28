@@ -42,7 +42,6 @@ cargo_bin  = find_program('cargo')
 cargo_opt  = [ '--manifest-path', meson.project_source_root() / 'Cargo.toml' ]
 cargo_opt = [ '--target-path', meson.project_build_root()  / 'src']
 cargo_opt += [ '--offline' ]
-cargo_env  = [ 'CARGO_HOME=' + meson.project_build_root()  / 'cargo-home' ]
 
 if get_option('buildtype') == 'release'
   cargo_opt += [ '--release' ]
@@ -61,7 +60,7 @@ cargo_build = custom_target(
   install_dir: get_option('bindir'),
   command: [
     'env', cargo_env,
-    cargo_bin, '--offline', 'fetch',
-    '--manifest-path', meson.project_source_root() / 'Cargo.toml', '--verbose', '&&', 'cargo', 'build', cargo_opt, '&&', 'cp', 'src' / rust_target / meson.project_name(), '@OUTPUT@',
+    cargo_bin, '--offline', 'fetch', '--manifest-path', meson.project_source_root() / 'Cargo.toml', '--verbose', '&&',
+    'cargo', 'build', cargo_opt, '&&', 'cp', 'src' / rust_target / meson.project_name(), '@OUTPUT@',
   ]
 )
