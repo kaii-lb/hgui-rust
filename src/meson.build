@@ -40,7 +40,7 @@ run_command(
 
 cargo_bin  = find_program('cargo')
 cargo_opt  = [ '--manifest-path', meson.project_source_root() / 'Cargo.toml' ]
-cargo_opt = [ '--target-path', meson.project_build_root()  / 'src']
+cargo_opt = [ '--target-dir', meson.project_build_root()  / 'src']
 cargo_opt += [ '--offline' ]
 
 cargo_env  = [ 'CARGO_HOME=' + '/run/build/hgui-rust/cargo' ]
