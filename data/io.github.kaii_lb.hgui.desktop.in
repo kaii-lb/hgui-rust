@@ -7,6 +7,6 @@ Comment=An app made for easy and offline conversion between Hijri and Gregorian 
 Categories=Utility;Construction;
 Keywords=hijri;gregorian;converter;date;
 
-Icon=com.kaii.hgui
+Icon=io.github.kaii_lb.hgui
 Exec=hgui-rust
 Terminal=false

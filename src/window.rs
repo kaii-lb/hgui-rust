@@ -30,7 +30,7 @@ mod imp {
 
     /// Contains all the buttons and variables the application needs.
     #[derive(Debug, Default, gtk::CompositeTemplate)]
-    #[template(resource = "/com/kaii/hgui/gtk/window.ui")]
+    #[template(resource = "/io/github/kaii_lb/hgui/gtk/window.ui")]
     pub struct HguiRustWindow {
         #[template_child]
         pub convert_button: TemplateChild<gtk::Button>,

@@ -1,4 +1,4 @@
-application_id = 'com.kaii.hgui'
+application_id = 'io.github.kaii_lb.hgui'
 
 '''
 scalable_dir = join_paths('hicolor', 'scalable', 'apps')

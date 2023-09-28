@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>com.kaii.hgui</id>
+  <id>io.github.kaii_lb.hgui</id>
 
   <name>Time Warp</name>
   <summary>An app made for easy and offline conversion between Hijri and Gregorian dates (and vice versa)!</summary>
@@ -29,16 +29,11 @@
         <p>First Stable Release.</p>
       </description>
   
-      <url>https://github.com/kaii-lb/hgui-rust/releases/tag/v1.0.0</url>
-  
-      <issues>
-        <issue url="https://example.com/bugzilla/12345">bz#12345</issue>
-        <issue type="cve">CVE-2019-123456</issue>
-      </issues>
+      <url>https://github.com/kaii-lb/hgui-rust/releases/tag/v1.0.3</url>
   
       <artifacts>
         <artifact type="binary" platform="x86_64-linux-gnu">
-          <location>https://github.com/kaii-lb/hgui-rust/releases/tag/v1.0.0</location>
+          <location>https://github.com/kaii-lb/hgui-rust/releases/tag/v1.0.3</location>
           <checksum type="sha256">748e5548d318643caca599142a656e5c56fdaa679d1d72aac41b0657ede7ad40</checksum>
           <size type="download">26471168</size>
           <size type="installed">267600000</size>
@@ -49,7 +44,7 @@
 
   <content_rating type="oars-1.1" />
 
-    <launchable type="desktop-id">com.kaii.hgui.desktop</launchable>
+    <launchable type="desktop-id">io.github.kaii_lb.hgui.desktop</launchable>
     <screenshots>
       <screenshot type="default">
         <image>https://github.com/kaii-lb/hgui-rust/blob/master/assets/images/dates.png</image>

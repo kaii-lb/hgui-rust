@@ -62,8 +62,8 @@ mod imp {
                 window.upcast()
             };
 
-            //window.set_icon_name(Some(&"com.kaii.hgui"));
-			gtk::Window::set_default_icon_name(&"com.kaii.hgui");
+            //window.set_icon_name(Some(&"io.github.kaii_lb.hgui"));
+			gtk::Window::set_default_icon_name(&"io.github.kaii_lb.hgui");
             // Ask the window manager/compositor to present the window
             window.present();
         }
@@ -99,8 +99,8 @@ impl HguiRustApplication {
         let about = adw::AboutWindow::builder()
             .transient_for(&window)
             .application_name("Time Warp")
-            .application_icon("com.kaii.hgui")
-            .developer_name("Kaii")
+            .application_icon("io.github.kaii_lb.hgui")
+            .developer_name("kaii")
             .version(VERSION)
             .developers(vec!["Kaii".into(), "Email: imkaiilb@gmail.com<imkaiilb@gmail.com>".into(), "Github: kaii-lb https://github.com/kaii-lb".into(), "Icons by Icons8 https://icons8.com/".into()])
             .copyright("©  Copyright 2023 Kai

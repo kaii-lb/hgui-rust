@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/com/kaii/hgui">
+  <gresource prefix="/io/github/kaii_lb/hgui">
     <file preprocess="xml-stripblanks">gtk/window.ui</file>
     <file preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
   </gresource>
-   <gresource prefix="/com/kaii/hgui/icons/scalable/apps/">
-    <file alias="com.kaii.hgui.svg">icons/scalable/apps/com.kaii.hgui.svg</file>
-    <file alias="com.kaii.hgui.png">icons/scalable/apps/com.kaii.hgui.png</file>
-    <file alias="com.kaii.hgui.ico">icons/scalable/apps/com.kaii.hgui.ico</file>
-    <file alias="com.kaii.hgui-symbolic.svg">icons/symbolic/apps/com.kaii.hgui-symbolic.svg</file>
+   <gresource prefix="/io/github/kaii_lb/hgui/icons/scalable/apps/">
+    <file alias="io.github.kaii_lb.hgui.svg">icons/scalable/apps/io.github.kaii_lb.hgui.svg</file>
+    <file alias="io.github.kaii_lb.hgui.png">icons/scalable/apps/io.github.kaii_lb.hgui.png</file>
+    <file alias="io.github.kaii_lb.hgui.ico">icons/scalable/apps/io.github.kaii_lb.hgui.ico</file>
+    <file alias="io.github.kaii_lb.hgui-symbolic.svg">icons/symbolic/apps/io.github.kaii_lb.hgui-symbolic.svg</file>
    </gresource>
 </gresources>

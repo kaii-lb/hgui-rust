@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="hgui-rust">
-	<schema id="com.kaii.hgui" path="/com/kaii/hgui/">
+	<schema id="io.github.kaii_lb.hgui" path="/io/github/kaii_lb/hgui">
 	</schema>
 </schemalist>

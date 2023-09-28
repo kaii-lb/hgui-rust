@@ -1,4 +1,4 @@
-data/com.kaii.hgui.desktop.in
-data/com.kaii.hgui.appdata.xml.in
-data/com.kaii.hgui.gschema.xml
+data/io.github.kaii_lb.hgui.desktop.in
+data/io.github.kaii_lb.hgui.appdata.xml.in
+data/io.github.kaii_lb.hgui.gschema.xml
 src/window.ui

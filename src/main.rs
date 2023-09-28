@@ -66,7 +66,7 @@ fn main() {
     // Create a new GtkApplication. The application manages our main loop,
     // application windows, integration with the window manager/compositor, and
     // desktop features such as file opening and single-instance applications.
-    let app = HguiRustApplication::new("com.kaii.hgui", &gio::ApplicationFlags::empty());
+    let app = HguiRustApplication::new("io.github.kaii_lb.hgui", &gio::ApplicationFlags::empty());
 
     // Run the application. This function will block until the application
     // exits. Upon return, we have our exit code to return to the shell. (This
