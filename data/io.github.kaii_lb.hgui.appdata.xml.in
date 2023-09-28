@@ -24,7 +24,7 @@
     </description>
 
   <releases>
-    <release version="1.0.4" date="2023-09-26" type="stable">
+    <release version="1.0.4" date="2023-09-28" type="stable">
       <description>
         <p>First Stable Release.</p>
       </description>
@@ -33,10 +33,10 @@
   
       <artifacts>
         <artifact type="binary" platform="x86_64-linux-gnu">
-          <location>https://github.com/kaii-lb/hgui-rust/releases/tag/v1.0.4</location>
-          <checksum type="sha256"></checksum>
-          <size type="download"></size>
-          <size type="installed"></size>
+          <location>https://github.com/kaii-lb/hgui-rust/releases/download/v1.0.4/timewarp.flatpak</location>
+          <checksum type="sha256">4be16a91353770ae2c6ad69e76f7eb7c80a2450fb41e55cb93e30a61ac91f770</checksum>
+          <size type="download">1724</size>
+          <size type="installed">4800000</size>
         </artifact>
       </artifacts>
     </release>
