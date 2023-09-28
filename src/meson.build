@@ -43,6 +43,8 @@ cargo_opt  = [ '--manifest-path', meson.project_source_root() / 'Cargo.toml' ]
 cargo_opt = [ '--target-path', meson.project_build_root()  / 'src']
 cargo_opt += [ '--offline' ]
 
+cargo_env  = [ 'CARGO_HOME=' + '/run/build/hgui-rust/cargo' ]
+
 if get_option('buildtype') == 'release'
   cargo_opt += [ '--release' ]
   rust_target = 'release'
@@ -59,7 +61,8 @@ cargo_build = custom_target(
   install: true,
   install_dir: get_option('bindir'),
   command: [
-    cargo_bin, '--offline', 'fetch', '--manifest-path', meson.project_source_root() / 'Cargo.toml', '--verbose', '&&',
-    'cargo', 'build', cargo_opt, '&&', 'cp', 'src' / rust_target / meson.project_name(), '@OUTPUT@',
+  	'env', cargo_env
+    cargo_bin, '--offline', 'fetch', 
+    '--manifest-path', meson.project_source_root() / 'Cargo.toml', '--verbose', '&&', 'cargo', 'build', cargo_opt, '&&', 'cp', 'src' / rust_target / meson.project_name(), '@OUTPUT@',
   ]
 )
