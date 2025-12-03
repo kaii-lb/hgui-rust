@@ -43,10 +43,10 @@ fn main() {
     // let resources = gio::Resource::load(PKGDATADIR.to_owned() + "/hgui-rust.gresource")
         // .expect("Could not load resources");
 
-	let resources = match std::env::var("MESON_DEVENV") {
+	let resources = match env::var("MESON_DEVENV") {
         Err(_) => gio::Resource::load(PKGDATADIR.to_owned() + "/hgui-rust.gresource")
             .expect("Unable to find hgui-rust.gresource"),
-        Ok(_) => match std::env::current_exe() {
+        Ok(_) => match env::current_exe() {
             Ok(path) => {
                 let mut resource_path = path;
                 resource_path.pop();
@@ -69,8 +69,8 @@ fn main() {
     let app = HguiRustApplication::new("io.github.kaii_lb.hgui", &gio::ApplicationFlags::empty());
 
     // Run the application. This function will block until the application
-    // exits. Upon return, we have our exit code to return to the shell. (This
+    // exits. Upon return, we have our exit code to return to the shell. This
     // is the code you see when you do `echo $?` after running a command in a
     // terminal.
-    std::process::exit(app.run());
+    app.run();
 }

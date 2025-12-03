@@ -4,12 +4,8 @@ version = "1.0.2"
 edition = "2021"
 
 [dependencies]
-gettext-rs = { version = "0.7", features = ["gettext-system"] }
-gtk = { version = "0.5", package = "gtk4" }
-env = "0.0.0"
+gettext-rs = { version = "0.7.7", features = ["gettext-system"] }
+gtk = { version = "0.10.2", package = "gtk4" }
+env = "1.0.1"
 arboard = { version = "3.2.0", features = ["wayland-data-control"] }
-
-[dependencies.adw]
-package = "libadwaita"
-version = "0.2"
-features = ["v1_2"]
+adw = { version = "0.8.0", package = "libadwaita", features = ["v1_4"] }

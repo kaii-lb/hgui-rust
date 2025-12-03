@@ -33,37 +33,37 @@ mod imp {
     #[template(resource = "/io/github/kaii_lb/hgui/gtk/window.ui")]
     pub struct HguiRustWindow {
         #[template_child]
-        pub convert_button: TemplateChild<gtk::Button>,
+        pub convert_button: TemplateChild<Button>,
         #[template_child]
-        pub hijri_spin_button: TemplateChild<gtk::SpinButton>,
+        pub hijri_spin_button: TemplateChild<SpinButton>,
         #[template_child]
-        pub gregorian_spin_button: TemplateChild<gtk::SpinButton>,
+        pub gregorian_spin_button: TemplateChild<SpinButton>,
         #[template_child]
-        pub start_year_spin_button: TemplateChild<gtk::SpinButton>,
+        pub start_year_spin_button: TemplateChild<SpinButton>,
         #[template_child]
-        pub end_year_spin_button: TemplateChild<gtk::SpinButton>,
+        pub end_year_spin_button: TemplateChild<SpinButton>,
         #[template_child]
-        pub change_between_button: TemplateChild<gtk::Button>,
+        pub change_between_button: TemplateChild<Button>,
         #[template_child]
-        pub switch_mode_button: TemplateChild<gtk::Button>,
+        pub switch_mode_button: TemplateChild<Button>,
         #[template_child]
-        pub copy_button: TemplateChild<gtk::Button>,
+        pub copy_button: TemplateChild<Button>,
         #[template_child]
-        pub array_list_box: TemplateChild<gtk::ListBox>,
+        pub array_list_box: TemplateChild<ListBox>,
         #[template_child]
-        pub array_dialog: TemplateChild<gtk::Dialog>,
+        pub array_dialog: TemplateChild<Dialog>,
         #[template_child]
-        pub gregorian_entry: TemplateChild<gtk::Entry>,
+        pub gregorian_entry: TemplateChild<Entry>,
         #[template_child]
-        pub hijri_entry: TemplateChild<gtk::Entry>,
+        pub hijri_entry: TemplateChild<Entry>,
         //#[template_child]
         //pub dialog_title: TemplateChild<gtk::Label>,
         #[template_child]
-        pub end_year_adjustment: TemplateChild<gtk::Adjustment>,
+        pub end_year_adjustment: TemplateChild<Adjustment>,
         #[template_child]
-        pub start_year_adjustment: TemplateChild<gtk::Adjustment>,
+        pub start_year_adjustment: TemplateChild<Adjustment>,
         #[template_child]
-        pub error_dialog: TemplateChild<gtk::MessageDialog>,
+        pub error_dialog: TemplateChild<MessageDialog>,
 
         pub is_date: Cell<bool>,
         pub is_array: Cell<bool>,
@@ -133,14 +133,17 @@ mod imp {
 
 glib::wrapper! {
     pub struct HguiRustWindow(ObjectSubclass<imp::HguiRustWindow>)
-        @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow, adw::ApplicationWindow,        @implements gio::ActionGroup, gio::ActionMap;
+        @extends Widget, Window, ApplicationWindow, adw::ApplicationWindow,
+        @implements gio::ActionGroup, gio::ActionMap, Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 } 
 
 impl HguiRustWindow {
-    pub fn new<P: glib::IsA<gtk::Application>>(application: &P) -> Self {
+    pub fn new<P: IsA<Application>>(application: &P) -> Self {
         //glib::Object::new(&[("application", application)])
 
-        let win: HguiRustWindow = glib::Object::new(&[("application", application)]);
+        let win: HguiRustWindow = glib::Object::builder()
+            .property("application", application)
+            .build();
 
         win.setup();
 
@@ -171,41 +174,74 @@ impl HguiRustWindow {
 
         let error_dialog = self.imp().error_dialog.get();
 
-        hijri_spin_button.connect_value_changed(clone! (@weak self as win => move |_| {
-            win.set_converting_to_gregorian(true);
-            win.on_hijri_value_changed();
-        }));
+        hijri_spin_button.connect_value_changed(
+            clone!(
+            #[strong(rename_to = win)] self,
+            move |_| {
+                win.set_converting_to_gregorian(true);
+                win.on_hijri_value_changed();
+            }
+        ));
 
-        gregorian_spin_button.connect_value_changed(clone! (@weak self as win => move |_| {
-            win.set_converting_to_gregorian(false);
-            win.on_gregorian_value_changed();
-        }));
+        gregorian_spin_button.connect_value_changed(
+            clone!(
+            #[strong(rename_to = win)] self,
+            move|_| {
+                win.set_converting_to_gregorian(false);
+                win.on_gregorian_value_changed();
+            }
+        ));
 
-        gregorian_entry.connect_activate(clone! (@weak self as win => move |_| {
-            win.set_converting_to_gregorian(false);
-            win.on_gregorian_value_changed();
-        }));
+        gregorian_entry.connect_activate(
+            clone!(
+            #[strong(rename_to = win)] self,
+            move |_| {
+                win.set_converting_to_gregorian(false);
+                win.on_gregorian_value_changed();
+            }
+        ));
 
-        gregorian_entry.connect_has_focus_notify(clone! (@weak self as win => move |_| {
-            win.set_converting_to_gregorian(false);
-        }));
+        gregorian_entry.connect_has_focus_notify(
+            clone!(
+            #[strong(rename_to = win)] self,
+            move |_| {
+                win.set_converting_to_gregorian(false);
+            }
+        ));
 
-        hijri_entry.connect_activate(clone! (@weak self as win => move |_| {
-            win.set_converting_to_gregorian(true);
-            win.on_hijri_value_changed();
-        }));
+        hijri_entry.connect_activate(
+            clone!(
+            #[strong(rename_to = win)] self,
+            move |_| {
+                win.set_converting_to_gregorian(true);
+                win.on_hijri_value_changed();
+            }
+        ));
 
-        hijri_entry.connect_has_focus_notify(clone! (@weak self as win => move |_| {
-            win.set_converting_to_gregorian(true);
-        }));
+        hijri_entry.connect_has_focus_notify(
+            clone!(
+            #[strong(rename_to = win)] self,
+            move |_| {
+                win.set_converting_to_gregorian(true);
+            }
+        ));
 
-        array_list_box.connect_row_selected(clone! (@weak self as win => move |_,_| {
-            win.copy_list_box_row();
-        }));
+        array_list_box.connect_row_selected(
+            clone!(
+            #[strong(rename_to = win)] self,
+            move |_,_| {
+                win.copy_list_box_row();
+            }
+        ));
 
-        error_dialog.connect_response(clone! (@weak self as win => move |_,_| {
-            win.close_error_dialog();
-        }));
+        error_dialog.connect_response(
+            clone!(
+                #[weak(rename_to = win)] self,
+                move |_,_| {
+                    win.close_error_dialog();
+                }
+            )
+        );
 
         change_between_button.set_action_name(Some("win.change_between"));
 
@@ -240,7 +276,7 @@ impl HguiRustWindow {
         clipboard_arboard.set_text(final_string).unwrap();
     }
     
-    /// Closes the error dialog, pretty self explanatory.
+    /// Closes the error dialog, pretty self-explanatory.
     /// (it actually hides it but uk same thing basically)    
     fn close_error_dialog(self) {
         self.imp().error_dialog.hide();
@@ -371,7 +407,7 @@ impl HguiRustWindow {
 
     
     /// Automatically gets the value of whatever entry/spin-button the user used last
-    /// and convert its to the appropriate value (hijri to gregorian and vice versa).
+    /// and convert it to the appropriate value (hijri to gregorian and vice versa).
     /// This is used by the convert button.
     fn convert(&self) {
         if self.imp().is_array.get(){
@@ -399,7 +435,7 @@ impl HguiRustWindow {
     }
 
     /// Handles the switch mode button click. Checks for a bunch of variables 
-    /// and switches the mode of the app accordinly.
+    /// and switches the mode of the app accordingly.
     /// Available modes are Normal, Array, and Date.
     fn switch_mode(&self) {
         let switch_mode_button = self.imp().switch_mode_button.get();
@@ -545,7 +581,7 @@ impl HguiRustWindow {
     }
 
 	/// Copies the result of the conversion to the clipboard.
-    /// Meaning it checks if _convering_to_gregorian_ and _is_date_
+    /// Meaning it checks if _converting_to_gregorian_ and _is_date_
     /// and copies accordingly.
 	fn copy(&self){
         let mut _string: String = "".to_string();
@@ -588,7 +624,7 @@ impl HguiRustWindow {
         //let dialog_title = self.imp().dialog_title.get();
 		let array_dialog = self.imp().array_dialog.get();
 
-        // Delete previous entries the the list box
+        // Delete previous entries the list box
         while let Some(row) = array_list_box.last_child() {
             array_list_box.remove(&row);
         }
@@ -601,7 +637,7 @@ impl HguiRustWindow {
 
                 let row = ListBoxRow::new();
                 
-                let string = ((i as f32 * (354.3 / 365.25) + 622.0)).ceil().to_string().as_str().to_owned();
+                let string = (i as f32 * (354.3 / 365.25) + 622.0).ceil().to_string().as_str().to_owned();
 
                 let final_string = i.to_string() + " -> " + string.as_str();
 
@@ -648,7 +684,7 @@ impl HguiRustWindow {
 
 
     /// Converts a full gregorian date to hijri. So from dd/MM/yyyy in gregorian 
-    /// to dd/MM/yyyy in hijri. How it works? i have no ducking idea its 
+    /// to dd/MM/yyyy in hijri. How it works? I have no ducking idea its
     /// either black magic and/or devine intervention.
     fn convert_gregorian_date_to_hijri(&self, mut day: i32, month: i32, year: i32) -> [i32;3]{
         day += 1;
@@ -673,11 +709,11 @@ impl HguiRustWindow {
         let y = 30.0 * n + j - 30.0;
         let d = l - self.int_part((709.0 * m) / 24.0);
 
-        return [d as i32,m as i32,y as i32];
+        [d as i32,m as i32,y as i32]
     }
 
     /// Converts a full hijri date to gregorian. So from dd/MM/yyyy in hijri 
-    /// to dd/MM/yyyy in gregorian. How it works? i have no ducking idea its 
+    /// to dd/MM/yyyy in gregorian. How it works? I have no ducking idea its
     /// either black magic and/or devine intervention.
     fn convert_hijri_date_gregorian(&self, mut day: i32, month: i32, year: i32) -> [i32;3] {
         day -= 1;
@@ -699,7 +735,7 @@ impl HguiRustWindow {
         let m = j + 2.0 - 12.0 * l;
         let y = 100.0 * (n - 49.0) + i + l;
 
-        return [d as i32, m as i32, y as i32];
+        [d as i32, m as i32, y as i32]
     }
 
     /// No idea. Nope. You go figure it out. 
