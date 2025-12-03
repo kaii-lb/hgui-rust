@@ -3,7 +3,7 @@
   <id>io.github.kaii_lb.hgui</id>
 
   <name>Time Warp</name>
-  <summary>An app made for easy and offline conversion between Hijri and Gregorian dates (and vice versa)!</summary>
+  <summary>Hijri to Gregorian date converter</summary>
 
   <metadata_license>CC-BY-4.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
