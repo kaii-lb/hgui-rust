@@ -1,0 +1,27 @@
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
+name: CI Testing
+jobs:
+  flatpak:
+    name: "Flatpak"
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/flathub-infra/flatpak-github-actions:gnome-48
+      options: --privileged
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install Rust 1.85.0 for edition2024 support
+      uses: actions-rust-lang/setup-rust-toolchain@v1
+      with:
+        toolchain: "1.85.0"
+
+    - name: Build Flatpak
+      uses: flatpak/flatpak-github-actions/flatpak-builder@v6.6
+      with:
+        bundle: timewarp-nightly.flatpak
+        manifest-path: io.github.kaii_lb.hgui.json
+        cache-key: flatpak-builder-${{ github.sha }}

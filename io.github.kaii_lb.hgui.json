@@ -1,7 +1,7 @@
 {
     "app-id" : "io.github.kaii_lb.hgui",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "master",
+    "runtime-version" : "48",
     "sdk" : "org.gnome.Sdk",
     "sdk-extensions" : [
         "org.freedesktop.Sdk.Extension.rust-stable"
@@ -42,21 +42,24 @@
             {
               "type": "git",
               "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler.git",
-              "tag": "v0.10.0"
+              "tag": "v0.18.0"
             }
           ]
         },
         {
-            "name" : "hgui-rust",
-            "builddir" : true,
-            "buildsystem" : "meson",
-            "sources" : [
-                {
-                    "type" : "dir",
-                    "path" : "."
-                },
-                "generated-sources.json"
-            ]
+          "name" : "hgui-rust",
+          "builddir" : true,
+          "buildsystem" : "meson",
+          "config-opts": [
+            "-Dbuildtype=release"
+          ],
+          "sources" : [
+            {
+              "type" : "git",
+              "url" : "https://github.com/kaii-lb/hgui-rust",
+              "branch" : "master"
+         	  }
+          ]
         }
     ]
 }
