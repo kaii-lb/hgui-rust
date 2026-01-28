@@ -8,11 +8,16 @@
   <metadata_license>CC-BY-4.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
 
+  <developer id="io.github.kaii_lb">
+    <name>kaii-lb</name>
+  </developer>
+
   <recommends>
     <display_length compare="ge">360</display_length>
   </recommends>
 
   <url type="homepage">https://github.com/kaii-lb/hgui-rust</url>
+  <url type="vcs-browser">https://github.com/kaii-lb/hgui-rust</url>
 
   <description>
     <p>
